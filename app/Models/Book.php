@@ -10,7 +10,8 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-       
+       'name',
+       'author_id'
     ];
 
     public function author()
