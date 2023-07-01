@@ -57,7 +57,7 @@ class BookController extends Controller
 
       };
     }
-        return redirect()->route('book_create');
+        return redirect()->route('book_index');
     }
 
     /**
@@ -102,6 +102,9 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+       
+     DB::table('book_genre')->where('book_id',$book->id)->delete();
+        return redirect()->route('book_index');
     }
 }
