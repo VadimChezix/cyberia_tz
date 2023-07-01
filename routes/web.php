@@ -20,5 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Роуты для книг
+Route::get('/books',[BookController::class,'index'])->name('book_index');
 Route::get('/book/create',[BookController::class,'create'])->name('book_create');
 Route::post('/book/create',[BookController::class,'store'])->name('book_store');

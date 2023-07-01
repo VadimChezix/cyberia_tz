@@ -18,7 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        
+        $books = Book::all();
+        return view('Books_views.book_index',compact('books'));
     }
 
     /**
@@ -30,7 +31,7 @@ class BookController extends Controller
     {
         $genres = Genre::all();
         $authors = Author::all();
-      return view('Books_views.book_create',['genres'=>$genres,'authors'=>$authors]);
+      return view('Books_views.book_create',compact('genres'),compact('authors'));
     }
 
     /**
@@ -46,6 +47,8 @@ class BookController extends Controller
           'name'=>$request->name,
           'author_id'=>$request->author_id,
         ]);
+
+        //добавление данных с формы в pivot-таблицу
       if ($request->genres != null)
       {
       foreach ($request->genres as $genre)
