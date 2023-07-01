@@ -25,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/books',[BookController::class,'index'])->name('book_index');
 Route::get('/book/create',[BookController::class,'create'])->name('book_create');
 Route::post('/book/create',[BookController::class,'store'])->name('book_store');
+Route::get('/book/{book}',[BookController::class,'show'])->name('book_show');

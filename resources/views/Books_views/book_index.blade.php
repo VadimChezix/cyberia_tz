@@ -28,12 +28,23 @@
                                             {{ $genre->name }}
                                         </td>
                                     @endforeach
-
+                                        <td>
+                                            <a href="{{route('book_show',$book->id)}}"> &#128269;</a>
+                                            <a href="" class="fs-5">&#9998;</a>
+                                            <a href="" class="fs-5">&#128465;</a>
+                                        </td>
+                                        
+                                       
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm d-flex justify-content-end">
+                <a href="{{route('home')}}" class="btn btn-secondary">Назад</a>
             </div>
         </div>
     </div>
