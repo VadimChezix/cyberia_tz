@@ -30,7 +30,7 @@
                                     @endforeach
                                         <td>
                                             <a href="{{route('book_show',$book->id)}}"> &#128269;</a>
-                                            <a href="" class="fs-5">&#9998;</a>
+                                            <a href="{{route('book_edit',$book->id)}}" class="fs-5">&#9998;</a>
                                             <a href="{{route('book_delete',$book->id)}}" class="fs-5">&#128465;</a>
                                         </td>
                                         

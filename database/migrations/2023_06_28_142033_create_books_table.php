@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->unique();
             $table->foreignId('author_id');
+            $table->string('publication')->nullable();
 
         });
     }

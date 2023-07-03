@@ -79,7 +79,12 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+       $authors = Author::all();
+       $genres = Genre::all();
+     
+      
+       return view('Books_views.book_edit',compact('book', 'authors', 'genres'));
+      
     }
 
     /**
@@ -89,9 +94,27 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        //
+        $book->update([
+          'name'=>$request->name,
+          'author_id'=>$request->author_id,
+        ]);
+        //Удаление старой записи в pivot-таблице и добавленние данных в pivot-таблицу
+        if ($request->genres != null)
+      {
+        foreach ($book->genres as $genre_id)
+      {
+      $book->genres()->detach([$genre_id->id]);
+      }
+      foreach ($request->genres as $genre)
+     {
+      
+        $book->genres()->attach([$genre]);
+     }
+      
+    }
+        return redirect()->route('book_show',$book->id);
     }
 
     /**
