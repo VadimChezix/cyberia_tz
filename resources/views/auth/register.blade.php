@@ -63,7 +63,7 @@
                         <div class="row mb-3">
                             <label for="" class="col-md-4 col-form-label text-md-end">Выберите кто вы</label>
                             <div class="col-md-6">
-                                <select name="role" id="" class="form-select">
+                                <select name="role" id="" class="form-select" required>
                                     <option value="Author">Автор</option>
                                     <option value="Reader">Читатель</option>
                                 </select>
