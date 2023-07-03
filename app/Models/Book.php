@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\BookPublicationEnum;
 
 class Book extends Model
 {
@@ -11,7 +12,11 @@ class Book extends Model
 
     protected $fillable = [
        'name',
-       'author_id'
+       'author_id',
+       'publication'
+    ];
+    protected $casts = [
+        'publication'=> BookPublicationEnum::class
     ];
 
     public function author()
