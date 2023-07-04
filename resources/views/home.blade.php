@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="" class="btn btn-primary">Перейти</a>
+                    <a href="{{route('genre_index')}}" class="btn btn-primary">Перейти</a>
                 </div>
             </div>
         </div>

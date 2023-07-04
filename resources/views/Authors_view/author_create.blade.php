@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <label for="">Имя</label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" >
+                            <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" >
                             @error('name')
                             <div class="alert alert-danger">
                                     Имя введенно не корректно
@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-sm">
                             <label for="">Email</label>
-                            <input type="email" name='email'class="form-control @error('email') is-invalid @enderror">
+                            <input type="email" name='email' value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
                             @error('email')
                                 <div class="alert alert-danger">Email введен некорректно</div>
                             @enderror
@@ -28,7 +28,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Добавить</button>
+                            <button type="submit" class="btn btn-primary">Добавить автора</button>
                         </div>
                     </div>
                 </form>

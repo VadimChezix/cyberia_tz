@@ -51,7 +51,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Отправить</button>
+                            <button type="submit" class="btn btn-primary">Изменить жанр</button>
                         </div>
                     </div>
                 </form>

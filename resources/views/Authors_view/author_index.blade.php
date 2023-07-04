@@ -23,8 +23,10 @@
                                     <td>{{ $author->name }}</td>
                                     <td>{{ $author->email }}</td>
                                     <td>
-                                        @foreach ($author->books as $book)
-                                            {{ $book->name }}
+                                        Количество книг: {{$author->books->count()}}
+                                        Названия: @foreach ($author->books as $book)
+                                            
+                                           {{ $book->name }}
                                         @endforeach
                                     </td>
                                     <td>

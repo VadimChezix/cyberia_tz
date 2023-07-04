@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\GenreController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +39,11 @@ Route::get('/author/{author}',[AuthorController::class,'show'])->name('author_sh
 Route::get('/author/{author}/edit',[AuthorController::class,'edit'])->name('author_edit');
 Route::put('/author/{author}/update',[AuthorController::class,'update'])->name('author_update');
 Route::get('/author/{author}/delete',[AuthorController::class,'destroy'])->name('author_delete');
+//Роуты для жанров
+Route::get('/genres',[GenreController::class,'index'])->name('genre_index');
+Route::get('/genre/create',[GenreController::class,'create'])->name('genre_create');
+Route::post('/genre/create',[GenreController::class,'store'])->name('genre_store');
+Route::get('/genre/{genre}',[GenreController::class,'show'])->name('genre_show');
+Route::get('/genre/{genre}/edit',[GenreController::class,'edit'])->name('genre_edit');
+Route::put('/genre/{genre}/update',[GenreController::class,'update'])->name('genre_update');
+Route::get('/genre/{genre}/delete',[GenreController::class,'destroy'])->name('genre_delete');
