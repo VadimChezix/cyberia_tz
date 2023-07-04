@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use App\Http\Requests\GenreRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -14,7 +16,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $genres = Genre::all();
+        return view('Genres_views.genre_index',compact('genres'));
     }
 
     /**
@@ -24,7 +27,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('Genres_views.genre_create');
     }
 
     /**
@@ -33,9 +36,12 @@ class GenreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GenreRequest $request)
     {
-        //
+        $genre = Genre::create([
+            'name'=>$request->name
+        ]);
+        return redirect()->route('genre_index');
     }
 
     /**
@@ -46,7 +52,7 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        return view('Genres_views.genre_show',compact('genre'));
     }
 
     /**
@@ -57,7 +63,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        return view('Genres_views.genre_edit',compact('genre'));
     }
 
     /**
@@ -67,9 +73,12 @@ class GenreController extends Controller
      * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Genre $genre)
+    public function update(GenreRequest $request, Genre $genre)
     {
-        //
+        $genre->update([
+            'name'=>$request->name
+        ]);
+        return redirect()->route('genre_show',$genre->id);
     }
 
     /**
@@ -80,6 +89,8 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+        DB::table('book_genre')->where('genre_id',$genre->id)->delete();
+        return redirect()->route('genre_index');
     }
 }
