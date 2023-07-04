@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,11 @@ Route::get('/book/{book}',[BookController::class,'show'])->name('book_show');
 Route::get('/book/{book}/delete',[BookController::class,'destroy'])->name('book_delete');
 Route::get('/book/{book}/edit',[BookController::class,'edit'])->name('book_edit');
 Route::put('/book/{book}/edit',[BookController::class,'update'])->name('book_update');
+//Роуты для авторов
+Route::get('/authors',[AuthorController::class,'index'])->name('author_index');
+Route::get('/author/create',[AuthorController::class,'create'])->name('author_create');
+Route::post('/author/create',[AuthorController::class,'store'])->name('author_store');
+Route::get('/author/{author}',[AuthorController::class,'show'])->name('author_show');
+Route::get('/author/{author}/edit',[AuthorController::class,'edit'])->name('author_edit');
+Route::put('/author/{author}/update',[AuthorController::class,'update'])->name('author_update');
+Route::get('/author/{author}/delete',[AuthorController::class,'destroy'])->name('author_delete');

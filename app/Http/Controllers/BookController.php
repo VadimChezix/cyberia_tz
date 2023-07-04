@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
+use App\Enums\PublicationEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\BookRequest;
@@ -28,7 +29,9 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
+      
+       
         $genres = Genre::all();
         $authors = Author::all();
       return view('Books_views.book_create',compact('genres'),compact('authors'));
