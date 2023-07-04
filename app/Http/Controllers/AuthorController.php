@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -14,7 +16,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::all();
+        return view('Authors_view.author_index',compact('authors'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('Authors_view.author_create');
     }
 
     /**
@@ -33,9 +36,13 @@ class AuthorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(AuthorRequest $request)
+    {   
+        $author = Author::create([
+            'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        return redirect()->route('author_index');
     }
 
     /**
@@ -46,7 +53,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return view('Authors_view.author_show',compact('author'));
     }
 
     /**
@@ -57,7 +64,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('Authors_view.author_edit',compact('author'));
     }
 
     /**
@@ -67,9 +74,13 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
-        //
+        $author->update([
+            'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        return redirect()->route('author_show',$author->id);
     }
 
     /**
@@ -80,6 +91,8 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        DB::table('books')->where('author_id',$author->id)->delete();
+        return redirect()->route('author_index');
     }
 }

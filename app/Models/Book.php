@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Models;
-
+use App\Enums\PublicationEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Enums\BookPublicationEnum;
+
 
 class Book extends Model
 {
@@ -15,10 +15,16 @@ class Book extends Model
        'author_id',
        'publication'
     ];
-    protected $casts = [
-        'publication'=> BookPublicationEnum::class
-    ];
-
+    // public function model(){
+    //     return PublicationEnum::class;
+    // }
+    // public static function values(){
+    //     return[
+    //     self::GRAPHIC => 'graphic',
+    //     self::PRINTED => 'printed',
+    //     self::DIGITAL => 'digital'
+    //     ];
+    // }
     public function author()
     {
         return $this->belongsTo(Author::class);

@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="" class="btn btn-primary">Перейти</a>
+                    <a href="{{route('author_index')}}" class="btn btn-primary">Перейти</a>
                 </div>
             </div>
             <div class="col-sm ms-2">

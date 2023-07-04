@@ -46,14 +46,14 @@
                 </form>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-sm d-flex justify-content-end">
+                <a href="{{route('home')}}" class="btn btn-secondary">На главную</a>
+            </div>
+            <div class="col-sm">
+                <a href="{{route('book_index')}}" class="btn btn-secondary">Назад</a>
+            </div>
+        </div>
     </div>
 @endsection
 
-
-{{-- <div class="container">
-    <div class="row">
-        <div class="col">
-           
-        </div>
-    </div>
-</div> --}}
