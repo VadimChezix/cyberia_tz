@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Author;
+use App\Http\Resources\BookResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BookApiController extends Controller
 {
@@ -13,8 +16,17 @@ class BookApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   if(Book::all()->count()>0)
+        {
+       return BookResource::collection(Book::paginate(3));
+        }
+        else
+        {
+       return response()->json([
+        'status'=>404,
+        'message'=>'Record not found'
+    ],404);
+}
     }
 
     /**
@@ -44,9 +56,11 @@ class BookApiController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
-    {
-        //
+    public function show($id)
+    {   
+        return new BookResource(Book::with('author')->findOrFail($id));
+       
+       
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
 
 class AuthorApiController extends Controller
@@ -13,8 +14,17 @@ class AuthorApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   if (Author::all()->count()>0)
+        {
+        return AuthorResource::collection(Author::paginate(5));
+        }
+        else
+        {
+            return response()->json([
+                'status'=>404,
+                'message'=>'Record not found'
+            ],404);
+        }
     }
 
     /**
@@ -24,7 +34,7 @@ class AuthorApiController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -44,9 +54,10 @@ class AuthorApiController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show($id)
     {
-        //
+        return new AuthorResource(Author::with('books')->findOrFail($id));
+        
     }
 
     /**
