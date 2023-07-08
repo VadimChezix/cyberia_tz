@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Author;
 use App\Http\Resources\BookResource;
 use Illuminate\Http\Request;
+use App\Http\Requests\BookUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 
 class BookApiController extends Controller
@@ -81,9 +82,10 @@ class BookApiController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(BookUpdateRequest $request, Book $book)
     {
-        //
+        $book->update($request->validated());
+        return new BookResource($book);
     }
 
     /**
