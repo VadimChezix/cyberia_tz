@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use App\Http\Resources\GenreResource;
 use Illuminate\Http\Request;
 
 class GenreApiController extends Controller
@@ -14,17 +15,7 @@ class GenreApiController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return GenreResource::collection(Genre::all());
     }
 
     /**
@@ -45,17 +36,6 @@ class GenreApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Genre $genre)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Genre  $genre
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Genre $genre)
     {
         //
     }

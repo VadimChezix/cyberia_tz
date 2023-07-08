@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
+use App\Http\Requests\AuthorRequest;
 
 class AuthorApiController extends Controller
 {
@@ -78,9 +79,10 @@ class AuthorApiController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorRequest $request, Author $author)
     {
-        //
+        $author->update($request->validated());
+        return new AuthorResource($author);
     }
 
     /**
