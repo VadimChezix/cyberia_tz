@@ -25,6 +25,22 @@
                                 <div class="alert alert-danger">Email введен некорректно</div>
                             @enderror
                         </div>
+                        <div class="col-sm">
+                            <label for="">Привязать аккаунт автора</label>
+                            <select name="user_id" id="" class="form-select @error('user_id') is-invalid
+                                
+                            @enderror">
+                                <option value="" selected>Выберите автора</option>
+                                @foreach ($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('user_id')
+                                <div class="alert alert-danger">
+                                    Аккаунт уже привязан
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm mt-3 d-flex justify-content-center">

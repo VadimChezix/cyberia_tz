@@ -11,12 +11,17 @@ class Author extends Model
 
     protected $fillable = [
         'name',
-        'email'
+        'email',
+        'user_id'
     ];
 
     public function books()
     {
         return $this->hasMany(Book::class);
     }
-    // public function count
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

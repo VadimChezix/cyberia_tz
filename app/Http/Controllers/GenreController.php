@@ -90,7 +90,6 @@ class GenreController extends Controller
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        DB::table('book_genre')->where('genre_id',$genre->id)->delete();
         return redirect()->route('genre_index');
     }
 }

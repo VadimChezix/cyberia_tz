@@ -19,6 +19,7 @@ class AuthorFactory extends Factory
         return [
             'name'=>fake()->name,
             'email'=>fake()->unique()->email,
+            'user_id'=>fake()->unique()->numberBetween(2,3)
         ];
     }
 }
