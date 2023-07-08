@@ -131,7 +131,7 @@ class BookController extends Controller
     {
         $book->delete();
        
-     DB::table('book_genre')->where('book_id',$book->id)->delete();
+    
         return redirect()->route('book_index');
     }
 }

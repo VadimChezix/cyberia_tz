@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AuthorRequest;
@@ -27,8 +28,9 @@ class AuthorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('Authors_view.author_create');
+    {   
+        $users = User::all()->where('role','Author');
+        return view('Authors_view.author_create',compact('users'));
     }
 
     /**
@@ -41,7 +43,8 @@ class AuthorController extends Controller
     {   
         $author = Author::create([
             'name'=>$request->name,
-            'email'=>$request->email
+            'email'=>$request->email,
+            'user_id'=>$request->user_id
         ]);
         return redirect()->route('author_index');
     }

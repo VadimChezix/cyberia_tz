@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('email');
+            $table->foreignId('user_id')->reference('id')->on('users')->unique()->onDelete('cascade');
         });
     }
 

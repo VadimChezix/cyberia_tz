@@ -30,12 +30,27 @@ class DatabaseSeeder extends Seeder
         ['name'=>'Детектив'],
         ['name'=>'Роман'],
         ]);
-        Author::factory(10)->create();
+        Author::factory(2)->create();
         User::insert([
+            [
             'name' => 'Vadim',
             'email' => 'admin@mail.ru',
             'password'=>Hash::make('12345678'),
             'role'=>'Admin'
-        ]);
+            ],
+            [
+                'name' => 'Egor',
+            'email' => 'author1@mail.ru',
+            'password'=>Hash::make('12345678'),
+            'role'=>'Author' 
+            ],
+            [
+                'name' => 'Nikita',
+                'email' => 'author2@mail.ru',
+                'password'=>Hash::make('12345678'),
+                'role'=>'Author'
+            ]
+        ]
+    );
     }
 }
