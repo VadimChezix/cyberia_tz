@@ -96,6 +96,13 @@ class BookApiController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        
+        $book->delete();
+        return response()->json(
+            [
+                'status'=>201,
+                'message'=>'Deleted succesfully'
+            ]
+            );
     }
 }
