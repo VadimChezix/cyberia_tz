@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Author;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,6 +30,16 @@ class AuthorController extends Controller
     public function create()
     {   
         $users = User::all()->where('role','Author');
+        $users = User::all();
+        foreach ($users as $user)
+        {
+            foreach($user->tokens as $token)
+            {
+                dd($token->token);
+            }
+           
+        }
+        
         return view('Authors_view.author_create',compact('users'));
     }
 
@@ -56,7 +66,7 @@ class AuthorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Author $author)
-    {
+    { 
         return view('Authors_view.author_show',compact('author'));
     }
 

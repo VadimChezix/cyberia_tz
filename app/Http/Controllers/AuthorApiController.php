@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use App\Models\Author;
 use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
@@ -80,9 +80,17 @@ class AuthorApiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(AuthorRequest $request, Author $author)
-    {
+    {  
+        
+        if (! Gate::allows('update-author', $author))
+         {
+            abort(403);
+        }
+    
         $author->update($request->validated());
         return new AuthorResource($author);
+     
+        
     }
 
     /**
@@ -93,6 +101,12 @@ class AuthorApiController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return response()->json(
+            [
+                'status'=>201,
+                'message'=>'Deleted succesfully'
+            ]
+            );
     }
 }

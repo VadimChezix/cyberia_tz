@@ -19,11 +19,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    // return $request->user();
-});
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    //All secure URL's
+    // Route::group(['middleware' => 'author'], function(){
+        //Роуты для авторов
+        Route::put('/author/{author}/update',[AuthorApiController::class,'update'])->name('author_update_api');
+        Route::delete('/author/{author}/delete',[AuthorApiController::class,'destroy'])->name('author_delete_api');
+        //Роуты для кнги
+        Route::put('/book/{book}/update',[BookApiController::class,'update'])->name('book_update_api');
+        Route::delete('/book/{book}/delete',[BookApiController::class,'destroy'])->name('book_delete_api');
+    
+    // });
     
 });
 //Роут для получение токена пользователя
@@ -31,11 +36,11 @@ Route::post('login',[UserController::class,'index']);
 //Роуты для кнги
 Route::get('/books',[BookApiController::class,'index'])->name('book_index_api');
 Route::get('/book/{book}',[BookApiController::class,'show'])->name('book_show_api');
-Route::put('/book/{book}/update',[BookApiController::class,'update'])->name('book_update_api');
+
 //Роуты для авторов
 Route::get('/authors',[AuthorApiController::class,'index'])->name('author_index_api');
 Route::get('/author/{author}',[AuthorApiController::class,'show'])->name('author_show_api');
-Route::put('/author/{author}/update',[AuthorApiController::class,'update'])->name('author_update_api');
 
+//Роуты для жанров
 Route::get('/genres',[GenreApiController::class,'index'])->name('genre_index_api');
 

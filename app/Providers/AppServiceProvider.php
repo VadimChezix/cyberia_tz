@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Providers;
-
+use App\Models\Author;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+    //     Gate::define('update-author',function (User $user, Author $author){
+    //         return $user->tokens === $author->user->tokens;
+    //    });
     }
 }
