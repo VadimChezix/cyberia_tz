@@ -26,7 +26,7 @@ class AuthorRequest extends FormRequest
         return [
             'name'=>'required|max:255|string',
             'email'=>'required|email',
-            'user_id'=>'unique:authors'
+            'user_id'=>'required|unique:authors'
         ];
     }
 }
