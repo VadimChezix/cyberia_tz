@@ -6,6 +6,34 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
+                <form action="{{route('book_index')}}" method="GET">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="">Выберите автора</label>
+                            <select class="form-select " name="author_id">
+                                <option value="">Все авторы</option>
+                                @foreach ($authors as $author)
+                                    <option value="{{$author->id}}" @if(isset($_GET['author_id'])) @if($_GET['author_id']==$author->id) selected @endif @endif>{{$author->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="">Напишите название книги</label>
+                            <input type="text" name="search_field" @if(isset($_GET['search_field'])) value="{{$_GET['search_field']}}" @endif class="form-control">
+                        </div>
+                       
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Отфильтровать</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+         </div>
+        <div class="row mt-5">
+            <div class="col-sm">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Filters\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 use App\Enums\PublicationEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,16 +17,6 @@ class Book extends Model
        'author_id',
        'publication'
     ];
-    // public function model(){
-    //     return PublicationEnum::class;
-    // }
-    // public static function values(){
-    //     return[
-    //     self::GRAPHIC => 'graphic',
-    //     self::PRINTED => 'printed',
-    //     self::DIGITAL => 'digital'
-    //     ];
-    // }
     public function author()
     {
         return $this->belongsTo(Author::class);
@@ -32,5 +24,9 @@ class Book extends Model
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
+    }
+    public function scopeFilter(Builder $builder, QueryFilter $filter)
+    {
+        return $filter->apply($builder);
     }
 }

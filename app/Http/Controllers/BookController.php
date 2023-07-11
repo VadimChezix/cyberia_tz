@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
 use App\Enums\PublicationEnum;
+use App\Filters\BookFilter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\BookRequest;
@@ -18,10 +19,12 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BookFilter $request)
     {
-        $books = Book::all();
-        return view('Books_views.book_index',compact('books'));
+        $books = Book::filter($request)->get();
+        $genres= Genre::all();
+        $authors=Author::all();
+        return view('Books_views.book_index',compact('books','authors'));
     }
 
     /**
