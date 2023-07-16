@@ -3,10 +3,13 @@
     <title>Редактировать книгу</title>
 @endsection
 @section('content')
+    <?php
+    use App\Enums\PublicationEnum;
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <form action="{{route('book_update',$book->id)}}" class="form-control" method="POST">
+                <form action="{{ route('book_update', $book->id) }}" class="form-control" method="POST">
                     @method('put')
                     @csrf
                     <div class="row">
@@ -31,6 +34,16 @@
                             @error('author_id')
                                 <div class="alert alert-danger">Это поле обязательно</div>
                             @enderror
+                        </div>
+                        <div class="col-sm mt-3">
+                            <label for="">Тип издания</label>
+                            <select name="publication" id="" class="form-select">
+                                <option value="{{ $book->publication }}" selected>{{ $book->publication }}</option>
+                                <option value="{{ PublicationEnum::GRAPHIC }}">{{ PublicationEnum::GRAPHIC }}</option>
+                                <option value="{{ PublicationEnum::PRINTED }}">{{ PublicationEnum::PRINTED }}</option>
+                                <option value="{{ PublicationEnum::DIGITAL }}">{{ PublicationEnum::DIGITAL }}</option>
+
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -59,10 +72,10 @@
         </div>
         <div class="row mt-5">
             <div class="col-sm d-flex justify-content-end">
-                <a href="{{route('book_index')}}" class="btn btn-secondary">Назад</a>
+                <a href="{{ route('book_index') }}" class="btn btn-secondary">Назад</a>
             </div>
             <div class="col-sm">
-                <a href="{{route('home')}}" class="btn btn-secondary">На главную</a>
+                <a href="{{ route('home') }}" class="btn btn-secondary">На главную</a>
             </div>
         </div>
     </div>
