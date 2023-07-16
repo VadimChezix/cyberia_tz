@@ -1,3 +1,4 @@
+Необходима Laravel 9 и PHP 8.1 + <br>
 Для запуска и установки нужно:<br>
 1.git clone https://github.com/VadimChezix/cyberia_tz.git<br>
 2.cd cyberia_tz<br>
