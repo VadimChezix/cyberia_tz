@@ -26,6 +26,7 @@ class BookRequest extends FormRequest
         return [
             'name'=>'required|string|max:255|unique:books',
             'author_id'=>'required',
+            'publication'=>'required'
         ];
     }
 }

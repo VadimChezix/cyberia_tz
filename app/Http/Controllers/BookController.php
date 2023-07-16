@@ -53,6 +53,7 @@ class BookController extends Controller
         $book = Book::create([
           'name'=>$request->name,
           'author_id'=>$request->author_id,
+          'publication'=>$request->publication
         ]);
 
         //добавление данных с формы в pivot-таблицу
