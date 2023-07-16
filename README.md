@@ -1,4 +1,4 @@
-Для запуска и установки нужно:
+Для запуска и установки нужно:<br>
 1.git clone https://github.com/VadimChezix/cyberia_tz.git
 2.cd cyberia_tz
 3.npm i
